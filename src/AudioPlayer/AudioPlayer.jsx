@@ -20,9 +20,10 @@ function AudioPlayer() {
   useEffect(() => {
     const fetchSong = async () => {
       try {
-        const response = await fetch("https://localhost/public/white_noise_radio/api/nowplaying");
+        const response = await fetch("http://localhost/api/nowplaying");
         const data = await response.json();
-        setCurrentSong(data[0].now_playing.song.title); // Adjust index for your station
+        console.log("API Response:", data);
+        setCurrentSong(data[0]?.now_playing.song.title + " - "+ data[0]?.now_playing.song.artist); // Adjust index for your station
       } catch (error) {
         console.error("Error fetching song:", error);
       }
@@ -36,23 +37,23 @@ function AudioPlayer() {
 
   return (
     <div style={{ textAlign: "center", margin: "20px" }}>
-      <h1>My Web Radio</h1>
-      <h2>Now Playing: {currentSong}</h2>
+      <h1>Ovo je radio?</h1>
+      <h2>Trenutno se pusta: {currentSong}</h2>
 
       <audio
         ref={audioRef}
-        src="https://localhost:8000/radio.mp3"
+        src="http://localhost:8000/radio.mp3"
         onEnded={() => setPlaying(false)} // Stop playing state when the track ends
       />
 
       <div>
         <button onClick={togglePlay}>
-          {playing ? "Pause" : "Play"}
+          {playing ? "Stani" : "Kreni"}
         </button>
       </div>
 
       <div>
-        <label>Volume:</label>
+        <label>Glasnoca:</label>
         <input
           type="range"
           min="0"
