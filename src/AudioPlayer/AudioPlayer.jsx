@@ -21,9 +21,11 @@ function AudioPlayer() {
     const fetchSong = async () => {
       try {
         //const response = await fetch("http://localhost/api/nowplaying"); // LOCAL
-        const response = await fetch("http://7b38-87-116-135-13.ngrok-free.app/api/nowplaying"); // PUBLIC
-        const data = await response.json();
-        console.log("API Response:", data);
+        fetch("https://7b38-87-116-135-13.ngrok-free.app/api/nowplaying") 
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+        });
         setCurrentSong(data[0]?.now_playing.song.title + " - "+ data[0]?.now_playing.song.artist); // Adjust index for your station
       } catch (error) {
         console.error("Error fetching song:", error);
