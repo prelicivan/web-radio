@@ -17,7 +17,7 @@ function AudioPlayer() {
     const fetchSong = async () => {
       try {
         const response = await fetch(
-          "https://2978e6bf374046237262106d55c5970f.loophole.site/api/nowplaying"
+          "https://6570a6e7ea4e6f630113cb2713ed19ba.loophole.site/api/nowplaying"
         );
         const data = await response.json();
         setCurrentSong(
@@ -55,7 +55,7 @@ function AudioPlayer() {
               type: "audio",
               sources: [
                 {
-                  src: "https://1d222157fe14d395b6be0c5d37169a65.loophole.site/radio.mp3",
+                  src: "https://2fd7102d78959c6effd59ac1c9313892.loophole.site/radio.mp3",
                   type: "audio/mpeg",
                 },
               ],
