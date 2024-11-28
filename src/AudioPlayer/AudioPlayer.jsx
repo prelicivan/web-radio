@@ -21,7 +21,7 @@ function AudioPlayer() {
     const fetchSong = async () => {
       try {
         //const response = await fetch("http://localhost/api/nowplaying"); // LOCAL
-        const response = await fetch(" https://e0ff-87-116-135-13.ngrok-free.app/api/nowplaying"); // PUBLIC
+        const response = await fetch(" https://9154dfa89e97587f503a70585e6f568c.loophole.site/api/nowplaying"); // PUBLIC
         const data = await response.json();
         console.log("API Response:", data);
         setCurrentSong(data[0]?.now_playing.song.title + " - "+ data[0]?.now_playing.song.artist); // Adjust index for your station
@@ -44,7 +44,7 @@ function AudioPlayer() {
       <audio
         ref={audioRef}
         //src="http://localhost:8000/radio.mp3" // LOCAL
-        src="https://e0ff-87-116-135-13.ngrok-free.app/radio.mp3" // PUBLIC
+        src="https://b2c67037a048023032a03d832f65f6e5.loophole.site/radio.mp3" // PUBLIC
         onEnded={() => setPlaying(false)} // Stop playing state when the track ends
       />
 
