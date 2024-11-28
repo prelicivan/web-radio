@@ -1,0 +1,33 @@
+/* Hide the large overlay play button */
+.plyr--audio .plyr__controls--overlaid {
+  display: none !important; /* Ensure it's hidden */
+}
+  
+/* Center the controls */
+.plyr--audio .plyr__controls {
+  justify-content: center !important;
+}
+  
+/* Adjust the size of the play button */
+.plyr--audio .plyr__controls {
+  width: 40px !important; /* Smaller width */
+  height: 40px !important; /* Smaller height */
+  border-radius: 50% !important; /* Circular button */
+  padding: 0 !important; /* No padding */
+  font-size: 16px !important; /* Adjust icon size */
+}
+
+.plyr__controls .plyr__controls__item:first-child {
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 50% !important; /* Circular button */
+    
+}
+
+.plyr {
+    min-width: 0;
+}
+
+body {
+    background-color: lightgray;
+}

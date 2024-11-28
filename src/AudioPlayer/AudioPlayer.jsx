@@ -1,30 +1,28 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import Plyr from "plyr-react";
+import "plyr-react/plyr.css";
+import "./playerStyles.css"
 
 function AudioPlayer() {
-  const audioRef = useRef(null); // To control the audio element
-  const [playing, setPlaying] = useState(false); // Track if it's playing
-  const [volume, setVolume] = useState(1); // Volume state
-  const [currentSong, setCurrentSong] = useState("Loading..."); // Current song title
+  const [currentSong, setCurrentSong] = useState("Loading...");
+  const [volume, setVolume] = useState(1);
 
-  // Play/Pause toggle
-  const togglePlay = () => {
-    if (playing) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play();
-    }
-    setPlaying(!playing); // Flip the playing state
+  const playerOptions = {
+    autoplay: true,
+    controls: ["play"],
   };
 
   // Fetch the current song name from AzuraCast API
   useEffect(() => {
     const fetchSong = async () => {
       try {
-        //const response = await fetch("http://localhost/api/nowplaying"); // LOCAL
-        const response = await fetch(" https://9154dfa89e97587f503a70585e6f568c.loophole.site/api/nowplaying"); // PUBLIC
+        const response = await fetch(
+          "https://9154dfa89e97587f503a70585e6f568c.loophole.site/api/nowplaying"
+        );
         const data = await response.json();
-        console.log("API Response:", data);
-        setCurrentSong(data[0]?.now_playing.song.title + " - "+ data[0]?.now_playing.song.artist); // Adjust index for your station
+        setCurrentSong(
+          `${data[0]?.now_playing.song.title} - ${data[0]?.now_playing.song.artist}`
+        );
       } catch (error) {
         console.error("Error fetching song:", error);
       }
@@ -38,36 +36,57 @@ function AudioPlayer() {
 
   return (
     <div style={{ textAlign: "center", margin: "20px" }}>
+      <header
+        style={{
+          display: "flex",
+          justifyContent: "left",
+          alignItems: "left",
+          gap: "20px", // Space between elements
+          backgroundColor: "#f4f4f4",
+          padding: "20px",
+          borderRadius: "8px",
+          marginBottom: "20px",
+        }}
+      >
+        {/* Plyr Player */}
+        <div className="audio-player"> 
+          <Plyr
+            source={{
+              type: "audio",
+              sources: [
+                {
+                  src: "https://b2c67037a048023032a03d832f65f6e5.loophole.site/radio.mp3",
+                  type: "audio/mpeg",
+                },
+              ],
+            }}
+            options={playerOptions}
+          />
+        </div>
+
+        {/* Volume Control */}
+        <div>
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step="0.1"
+            value={volume}
+            onChange={(e) => {
+              setVolume(e.target.value);
+              const plyrInstance = document.querySelector(".plyr").plyr;
+              if (plyrInstance) {
+                plyrInstance.volume = e.target.value;
+              }
+            }}
+            style={{ width: "150px", verticalAlign: "-webkit-baseline-middle" }}
+          />
+        </div>
+
+        {/* Song Name */}
+        <div style={{ fontWeight: "bold", fontSize: 30, verticalAlign: "-webkit-baseline-middle", }}>{currentSong}</div>
+      </header>
       <h1>Ovo je radio?</h1>
-      <h2>Trenutno se pusta: {currentSong}</h2>
-
-      <audio
-        ref={audioRef}
-        //src="http://localhost:8000/radio.mp3" // LOCAL
-        src="https://b2c67037a048023032a03d832f65f6e5.loophole.site/radio.mp3" // PUBLIC
-        onEnded={() => setPlaying(false)} // Stop playing state when the track ends
-      />
-
-      <div>
-        <button onClick={togglePlay}>
-          {playing ? "Stani" : "Kreni"}
-        </button>
-      </div>
-
-      <div>
-        <label>Glasnoca:</label>
-        <input
-          type="range"
-          min="0"
-          max="1"
-          step="0.1"
-          value={volume}
-          onChange={(e) => {
-            setVolume(e.target.value);
-            audioRef.current.volume = e.target.value; // Update volume on change
-          }}
-        />
-      </div>
     </div>
   );
 }
