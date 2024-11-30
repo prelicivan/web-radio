@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import Plyr from "plyr-react";
 import "plyr-react/plyr.css";
 import "./playerStyles.css"
+import CONFIG from "../config";
 
 function AudioPlayer() {
   const [currentSong, setCurrentSong] = useState("Loading...");
   const [volume, setVolume] = useState(1);
 
   const playerOptions = {
-    autoplay: true,
+    autoplay: false,
     controls: ["play"],
   };
 
@@ -17,7 +18,7 @@ function AudioPlayer() {
     const fetchSong = async () => {
       try {
         const response = await fetch(
-          "https://6570a6e7ea4e6f630113cb2713ed19ba.loophole.site/api/nowplaying"
+          CONFIG.API_NOW_PLAYING_URL
         );
         const data = await response.json();
         setCurrentSong(
@@ -55,7 +56,7 @@ function AudioPlayer() {
               type: "audio",
               sources: [
                 {
-                  src: "https://2fd7102d78959c6effd59ac1c9313892.loophole.site/radio.mp3",
+                  src: CONFIG.API_RADIO_STREAM_URL,
                   type: "audio/mpeg",
                 },
               ],
