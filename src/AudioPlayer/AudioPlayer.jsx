@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Plyr from "plyr-react";
 import "plyr-react/plyr.css";
-import "./playerStyles.css"
 import CONFIG from "../config";
 
 function AudioPlayer() {
   const [currentSong, setCurrentSong] = useState("Loading...");
   const [volume, setVolume] = useState(1);
+  const playerRef = useRef(null);
 
   const playerOptions = {
     autoplay: false,
     controls: ["play"],
+    loadSprite: true, // Ensures icons load properly
+    iconUrl: "https://cdn.plyr.io/3.6.8/plyr.svg", // Fallback for missing icons
+    html5: true, // Forces HTML5 mode
   };
 
-  // Fetch the current song name from AzuraCast API
   useEffect(() => {
     const fetchSong = async () => {
       try {
-        const response = await fetch(
-          CONFIG.API_NOW_PLAYING_URL
-        );
+        const response = await fetch(CONFIG.API_NOW_PLAYING_URL);
         const data = await response.json();
         setCurrentSong(
           `${data[0]?.now_playing.song.title} - ${data[0]?.now_playing.song.artist}`
@@ -31,9 +31,17 @@ function AudioPlayer() {
 
     fetchSong();
     const interval = setInterval(fetchSong, 10000); // Update every 10 seconds
-
     return () => clearInterval(interval); // Clean up interval
   }, []);
+
+  // Update Plyr's volume directly using ref
+  const handleVolumeChange = (e) => {
+    const newVolume = parseFloat(e.target.value);
+    setVolume(newVolume);
+    if (playerRef.current?.plyr) {
+      playerRef.current.plyr.volume = newVolume;
+    }
+  };
 
   return (
     <div style={{ textAlign: "center", margin: "20px" }}>
@@ -41,8 +49,8 @@ function AudioPlayer() {
         style={{
           display: "flex",
           justifyContent: "left",
-          alignItems: "left",
-          gap: "20px", // Space between elements
+          alignItems: "center",
+          gap: "20px",
           backgroundColor: "#f4f4f4",
           padding: "20px",
           borderRadius: "8px",
@@ -50,8 +58,9 @@ function AudioPlayer() {
         }}
       >
         {/* Plyr Player */}
-        <div className="audio-player"> 
+        <div className="audio-player">
           <Plyr
+            ref={playerRef}
             source={{
               type: "audio",
               sources: [
@@ -61,32 +70,26 @@ function AudioPlayer() {
                 },
               ],
             }}
-            options={playerOptions}
+             options={playerOptions}
+             crossOrigin="anonymous"
           />
         </div>
 
         {/* Volume Control */}
-        <div>
-          <input
-            type="range"
-            min="0"
-            max="1"
-            step="0.1"
-            value={volume}
-            onChange={(e) => {
-              setVolume(e.target.value);
-              const plyrInstance = document.querySelector(".plyr").plyr;
-              if (plyrInstance) {
-                plyrInstance.volume = e.target.value;
-              }
-            }}
-            style={{ width: "150px", verticalAlign: "-webkit-baseline-middle" }}
-          />
-        </div>
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.1"
+          value={volume}
+          onChange={handleVolumeChange}
+          style={{ width: "150px", cursor: "pointer" }}
+        />
 
         {/* Song Name */}
-        <div style={{ fontSize: 30, verticalAlign: "-webkit-baseline-middle"}}>{currentSong}</div>
+        <div style={{ fontSize: 30 }}>{currentSong}</div>
       </header>
+
       <h1>Ovo je radio?</h1>
     </div>
   );

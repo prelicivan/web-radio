@@ -31,3 +31,18 @@
 body {
     background-color: lightgray;
 }
+
+/* Hide Safari's native audio controls */
+audio::-webkit-media-controls {
+  display: none !important;
+}
+
+/* Centering fix for Safari-specific issues */
+.audio-player {
+  display: flex;
+  align-items: center;
+}
+
+input[type="range"] {
+  -webkit-appearance: none; /* Safari slider reset */
+}

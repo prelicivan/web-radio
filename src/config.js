@@ -1,6 +1,6 @@
 const CONFIG = {
-    API_NOW_PLAYING_URL: "https://e7db546ea9a467cfae5fb29fce362012.loophole.site/api/nowplaying", // port 80
-    API_RADIO_STREAM_URL: "https://0955ced10b24c9610832f0edbf840257.loophole.site/radio.mp3" // port 8000
+    API_NOW_PLAYING_URL: "https://93f1893866d8b20d1871e36d3b450c99.loophole.site" + "/api/nowplaying", // port 80
+    API_RADIO_STREAM_URL: "https://4bc89f1936ea6e74cfd019712d897981.loophole.site" + "/radio.mp3" // port 8000
 };
 
 export default CONFIG;
