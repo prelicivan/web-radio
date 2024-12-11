@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Plyr from "plyr-react";
 import "plyr-react/plyr.css";
 import CONFIG from "../config";
+import "./playerStyles.css"
 
 function AudioPlayer() {
   const [currentSong, setCurrentSong] = useState("Loading...");
@@ -44,7 +45,7 @@ function AudioPlayer() {
   };
 
   return (
-    <div style={{ textAlign: "center", margin: "20px" }}>
+    <div style={{ textAlign: "center" }}>
       <header
         style={{
           display: "flex",

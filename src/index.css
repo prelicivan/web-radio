@@ -5,9 +5,16 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('/public/psychadelic.jpg'); /* Adjust the path */
+  background-size: cover; /* Cover the entire screen */
+  background-position: center; /* Center the image */
+  background-attachment: fixed; /* Keeps background fixed during scrolling */
+  margin: 20px; /* Remove default margin */
+  justify-content: center;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+

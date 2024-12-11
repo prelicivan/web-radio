@@ -1,3 +1,7 @@
+.plyr {
+  min-width: 0;
+}
+
 /* Hide the large overlay play button */
 .plyr--audio .plyr__controls--overlaid {
   display: none !important; /* Ensure it's hidden */
@@ -24,25 +28,7 @@
     
 }
 
-.plyr {
-    min-width: 0;
-}
 
-body {
-    background-color: lightgray;
-}
 
-/* Hide Safari's native audio controls */
-audio::-webkit-media-controls {
-  display: none !important;
-}
 
-/* Centering fix for Safari-specific issues */
-.audio-player {
-  display: flex;
-  align-items: center;
-}
 
-input[type="range"] {
-  -webkit-appearance: none; /* Safari slider reset */
-}
