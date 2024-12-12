@@ -29,10 +29,13 @@
 
 /* Scrolling Song Info */
 .song-info-container {
-  width: 150px; /* Adjust size */
+  width: 200px; /* Adjust size */
   overflow: hidden;
   white-space: nowrap;
   position: relative;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  text-align: center;
   height: 30px;
 }
 
@@ -51,6 +54,36 @@
   }
 }
 
+/* Volume Control Styling */
+.volume-control {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 150px;
+  height: 8px;
+  border-radius: 5px;
+  background: black;
+  outline: none;
+  cursor: pointer;
+  margin: 0; /* Ensures no extra margins */
+}
+
+.volume-control::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+}
+
+.volume-control::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+}
 
 
 

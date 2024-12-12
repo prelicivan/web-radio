@@ -7,6 +7,7 @@ import "./playerStyles.css"
 function AudioPlayer() {
   const [stationStatus, setStationStatus] = useState("Checking...");
   const [currentSong, setCurrentSong] = useState("Loading...");
+  const [time, setTime] = useState(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
   const [volume, setVolume] = useState(1);
   const playerRef = useRef(null);
 
@@ -54,6 +55,14 @@ function AudioPlayer() {
     return () => clearInterval(interval); // Clean up interval
   }, []);
 
+  useEffect(() => {
+    const clockInterval = setInterval(() => {
+      setTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+    }, 1000); // Update every minute
+
+    return () => clearInterval(clockInterval); // Clean up clock interval
+  }, []);
+
   // Update Plyr's volume directly using ref
   const handleVolumeChange = (e) => {
     const newVolume = parseFloat(e.target.value);
@@ -73,7 +82,7 @@ function AudioPlayer() {
           gap: "20px",
           backgroundColor: "#f4f4f4",
           padding: "20px",
-          borderRadius: "8px",
+          borderRadius: "6px",
           marginBottom: "20px",
         }}
       >
@@ -97,6 +106,11 @@ function AudioPlayer() {
             />
           </div>
 
+          {/* Song Name */}
+          <div className="song-info-container">
+            <div className="scrolling-text">{currentSong}</div>
+          </div>
+
           {/* Volume Control */}
           <input
             type="range"
@@ -105,29 +119,32 @@ function AudioPlayer() {
             step="0.1"
             value={volume}
             onChange={handleVolumeChange}
-            style={{ width: "150px", cursor: "pointer" }}
+            className="volume-control"
           />
-
-          {/* Song Name */}
-          <div className="song-info-container">
-            <div className="scrolling-text">{currentSong}</div>
-          </div>
         </div>
 
-        {/* Right-most Side: Station Status Indicator */}
         <div
           style={{
-            fontSize: "20px",
-            fontWeight: "bold",
-            color: stationStatus === "On Air" ? "green" : "red",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            height: "100%",
+            alignItems: "center",
           }}
-        >
-          {stationStatus}
+        >         
+         <div
+            style={{
+              fontSize: "20px",
+              fontWeight: "bold",
+              color: stationStatus === "On Air" ? "green" : "red",
+              borderBottom: "1px"
+            }}
+          >
+            {stationStatus}
+          </div>
+          <div style={{ fontSize: "14px", fontWeight: "bold" }}>{time}</div>
         </div>
       </header>
-
-
-      {/* <h1>Ovo je radio?</h1> */}
     </div>
   );
 }
