@@ -5,6 +5,7 @@ import CONFIG from "../config";
 import "./playerStyles.css"
 
 function AudioPlayer() {
+  const [stationStatus, setStationStatus] = useState("Checking...");
   const [currentSong, setCurrentSong] = useState("Loading...");
   const [volume, setVolume] = useState(1);
   const playerRef = useRef(null);
@@ -17,11 +18,29 @@ function AudioPlayer() {
     html5: true, // Forces HTML5 mode
   };
 
+  // Check station stream status
+  useEffect(() => {
+    const checkStationStatus = async () => {
+      try {
+        const response = await fetch(CONFIG.API_RADIO_STREAM_URL, { method: "HEAD" });
+        setStationStatus(response.ok ? "On Air" : "Offline");
+      } catch (error) {
+        console.error("Error checking station status:", error);
+        setStationStatus("Offline");
+      }
+    };
+
+    checkStationStatus();
+    const interval = setInterval(checkStationStatus, 10000); 
+    return () => clearInterval(interval); 
+  }, []);
+
   useEffect(() => {
     const fetchSong = async () => {
       try {
         const response = await fetch(CONFIG.API_NOW_PLAYING_URL);
         const data = await response.json();
+
         setCurrentSong(
           `${data[0]?.now_playing.song.title} - ${data[0]?.now_playing.song.artist}`
         );
@@ -49,7 +68,7 @@ function AudioPlayer() {
       <header
         style={{
           display: "flex",
-          justifyContent: "left",
+          justifyContent: "space-between", // Pushes items to both ends
           alignItems: "center",
           gap: "20px",
           backgroundColor: "#f4f4f4",
@@ -58,40 +77,57 @@ function AudioPlayer() {
           marginBottom: "20px",
         }}
       >
-        {/* Plyr Player */}
-        <div className="audio-player">
-          <Plyr
-            ref={playerRef}
-            source={{
-              type: "audio",
-              sources: [
-                {
-                  src: CONFIG.API_RADIO_STREAM_URL,
-                  type: "audio/mpeg",
-                },
-              ],
-            }}
-             options={playerOptions}
-             crossOrigin="anonymous"
+        {/* Left Section: Plyr Player, Volume, and Song Name */}
+        <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+          {/* Plyr Player */}
+          <div className="audio-player">
+            <Plyr
+              ref={playerRef}
+              source={{
+                type: "audio",
+                sources: [
+                  {
+                    src: CONFIG.API_RADIO_STREAM_URL,
+                    type: "audio/mpeg",
+                  },
+                ],
+              }}
+              options={playerOptions}
+              crossOrigin="anonymous"
+            />
+          </div>
+
+          {/* Volume Control */}
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step="0.1"
+            value={volume}
+            onChange={handleVolumeChange}
+            style={{ width: "150px", cursor: "pointer" }}
           />
+
+          {/* Song Name */}
+          <div className="song-info-container">
+            <div className="scrolling-text">{currentSong}</div>
+          </div>
         </div>
 
-        {/* Volume Control */}
-        <input
-          type="range"
-          min="0"
-          max="1"
-          step="0.1"
-          value={volume}
-          onChange={handleVolumeChange}
-          style={{ width: "150px", cursor: "pointer" }}
-        />
-
-        {/* Song Name */}
-        <div style={{ fontSize: 30 }}>{currentSong}</div>
+        {/* Right-most Side: Station Status Indicator */}
+        <div
+          style={{
+            fontSize: "20px",
+            fontWeight: "bold",
+            color: stationStatus === "On Air" ? "green" : "red",
+          }}
+        >
+          {stationStatus}
+        </div>
       </header>
 
-      <h1>Ovo je radio?</h1>
+
+      {/* <h1>Ovo je radio?</h1> */}
     </div>
   );
 }
