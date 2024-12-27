@@ -1,23 +1,36 @@
 import React, { useState, useEffect, useRef } from "react";
-import Plyr from "plyr-react";
-import "plyr-react/plyr.css";
+import { Howl } from "howler";
 import CONFIG from "../config";
-import "./AudioPlayer.css"
+import "./AudioPlayer.css";
 
 function AudioPlayer() {
   const [stationStatus, setStationStatus] = useState("Checking...");
   const [currentSong, setCurrentSong] = useState("Loading...");
-  const [time, setTime] = useState(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+  const [time, setTime] = useState(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
   const [volume, setVolume] = useState(1);
-  const playerRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
 
-  const playerOptions = {
-    autoplay: false,
-    controls: ["play"],
-    loadSprite: true, // Ensures icons load properly
-    iconUrl: "https://cdn.plyr.io/3.6.8/plyr.svg", // Fallback for missing icons
-    html5: true, // Forces HTML5 mode
-  };
+  // Initialize Howler instance
+  useEffect(() => {
+    audioRef.current = new Howl({
+      src: [CONFIG.API_RADIO_STREAM_URL],
+      format: ["mp3"],
+      html5: true, // Enable HTML5 mode for better stream handling
+      volume: volume,
+      onloaderror: (id, error) => console.error("Load error:", error),
+      onplayerror: (id, error) => {
+        console.error("Play error:", error);
+        audioRef.current.once("unlock", () => audioRef.current.play());
+      },
+    });
+
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.unload();
+      }
+    };
+  }, [volume]);
 
   // Check station stream status
   useEffect(() => {
@@ -32,8 +45,8 @@ function AudioPlayer() {
     };
 
     checkStationStatus();
-    const interval = setInterval(checkStationStatus, 10000); 
-    return () => clearInterval(interval); 
+    const interval = setInterval(checkStationStatus, 10000);
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -51,24 +64,35 @@ function AudioPlayer() {
     };
 
     fetchSong();
-    const interval = setInterval(fetchSong, 10000); // Update every 10 seconds
-    return () => clearInterval(interval); // Clean up interval
+    const interval = setInterval(fetchSong, 10000);
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     const clockInterval = setInterval(() => {
-      setTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
-    }, 1000); // Update every minute
+      setTime(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
+    }, 1000);
 
-    return () => clearInterval(clockInterval); // Clean up clock interval
+    return () => clearInterval(clockInterval);
   }, []);
 
-  // Update Plyr's volume directly using ref
+  const togglePlay = () => {
+    if (!audioRef.current) return;
+
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+
+    setIsPlaying(!isPlaying);
+  };
+
   const handleVolumeChange = (e) => {
     const newVolume = parseFloat(e.target.value);
     setVolume(newVolume);
-    if (playerRef.current?.plyr) {
-      playerRef.current.plyr.volume = newVolume;
+    if (audioRef.current) {
+      audioRef.current.volume(newVolume);
     }
   };
 
@@ -77,20 +101,9 @@ function AudioPlayer() {
       <header className="header">
         <div className="left-section">
           <div className="audio-player">
-            <Plyr
-              ref={playerRef}
-              source={{
-                type: "audio",
-                sources: [
-                  {
-                    src: CONFIG.API_RADIO_STREAM_URL,
-                    type: "audio/mpeg",
-                  },
-                ],
-              }}
-              options={playerOptions}
-              crossOrigin="anonymous"
-            />
+            <button className="play-pause-button" onClick={togglePlay}>
+              {isPlaying ? "Pause" : "Play"}
+            </button>
           </div>
 
           <div className="song-info-container">
@@ -108,11 +121,12 @@ function AudioPlayer() {
           />
         </div>
 
-        <div className="right-section">         
-         <div className="station-status" 
-              style={{
-                color: stationStatus === "On Air" ? "green" : "red",
-              }} 
+        <div className="right-section">
+          <div
+            className="station-status"
+            style={{
+              color: stationStatus === "On Air" ? "green" : "red",
+            }}
           >
             {stationStatus}
           </div>
