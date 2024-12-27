@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Plyr from "plyr-react";
 import "plyr-react/plyr.css";
 import CONFIG from "../config";
-import "./playerStyles.css"
+import "./AudioPlayer.css"
 
 function AudioPlayer() {
   const [stationStatus, setStationStatus] = useState("Checking...");
@@ -74,21 +74,8 @@ function AudioPlayer() {
 
   return (
     <div style={{ textAlign: "center" }}>
-      <header
-        style={{
-          display: "flex",
-          justifyContent: "space-between", // Pushes items to both ends
-          alignItems: "center",
-          gap: "20px",
-          backgroundColor: "#f4f4f4",
-          padding: "20px",
-          borderRadius: "6px",
-          marginBottom: "20px",
-        }}
-      >
-        {/* Left Section: Plyr Player, Volume, and Song Name */}
-        <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-          {/* Plyr Player */}
+      <header className="header">
+        <div className="left-section">
           <div className="audio-player">
             <Plyr
               ref={playerRef}
@@ -106,12 +93,10 @@ function AudioPlayer() {
             />
           </div>
 
-          {/* Song Name */}
           <div className="song-info-container">
             <div className="scrolling-text">{currentSong}</div>
           </div>
 
-          {/* Volume Control */}
           <input
             type="range"
             min="0"
@@ -123,26 +108,15 @@ function AudioPlayer() {
           />
         </div>
 
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            height: "100%",
-            alignItems: "center",
-          }}
-        >         
-         <div
-            style={{
-              fontSize: "20px",
-              fontWeight: "bold",
-              color: stationStatus === "On Air" ? "green" : "red",
-              borderBottom: "1px"
-            }}
+        <div className="right-section">         
+         <div className="station-status" 
+              style={{
+                color: stationStatus === "On Air" ? "green" : "red",
+              }} 
           >
             {stationStatus}
           </div>
-          <div style={{ fontSize: "14px", fontWeight: "bold" }}>{time}</div>
+          <div className="time">{time}</div>
         </div>
       </header>
     </div>

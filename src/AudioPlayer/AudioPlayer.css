@@ -1,3 +1,39 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.2rem;
+  background-color: #f4f4f4;
+  padding: 1.2rem;
+  border-radius: 0.375rem;
+  margin-bottom: 1.25rem;
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.right-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  align-items: center;
+}
+
+.station-status {
+  font-size: 20px;
+  font-weight: bold;
+  border-bottom: 1px;
+}
+
+.time {
+  font-size: 14px;
+  font-weight: bold;
+}
+
 .plyr {
   min-width: 0;
 }
@@ -14,11 +50,11 @@
   
 /* Adjust the size of the play button */
 .plyr--audio .plyr__controls {
-  width: 40px !important; /* Smaller width */
-  height: 40px !important; /* Smaller height */
+  width: 2.5rem !important; /* Smaller width */
+  height: 2.5rem !important; /* Smaller height */
   border-radius: 50% !important; /* Circular button */
   padding: 0 !important; /* No padding */
-  font-size: 16px !important; /* Adjust icon size */
+  font-size: 1rem !important; /* Adjust icon size */
 }
 
 .plyr__controls .plyr__controls__item:first-child {
@@ -29,14 +65,14 @@
 
 /* Scrolling Song Info */
 .song-info-container {
-  width: 200px; /* Adjust size */
+  width: 12.5rem; /* Adjust size */
   overflow: hidden;
   white-space: nowrap;
   position: relative;
   border-left: 1px solid black;
   border-right: 1px solid black;
   text-align: center;
-  height: 30px;
+  height: 1.875rem;
 }
 
 .scrolling-text {
@@ -58,8 +94,8 @@
 .volume-control {
   -webkit-appearance: none;
   appearance: none;
-  width: 150px;
-  height: 8px;
+  width: 9.375rem;
+  height: 0.5rem;
   border-radius: 5px;
   background: black;
   outline: none;
