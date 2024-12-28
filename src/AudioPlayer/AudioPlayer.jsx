@@ -83,7 +83,7 @@ function AudioPlayer() {
                 type: "audio",
                 sources: [
                   {
-                    src: "https://stream.radioparadise.com/mp3-192",
+                    src: CONFIG.API_RADIO_STREAM_URL,
                     type: "audio/mpeg",
                   },
                 ],
