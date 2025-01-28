@@ -38,34 +38,30 @@
   min-width: 0;
 }
 
-/* Hide the large overlay play button */
 .plyr--audio .plyr__controls--overlaid {
-  display: none !important; /* Ensure it's hidden */
+  display: none !important; 
 }
   
-/* Center the controls */
 .plyr--audio .plyr__controls {
   justify-content: center !important;
 }
   
-/* Adjust the size of the play button */
 .plyr--audio .plyr__controls {
-  width: 2.5rem !important; /* Smaller width */
-  height: 2.5rem !important; /* Smaller height */
-  border-radius: 50% !important; /* Circular button */
-  padding: 0 !important; /* No padding */
-  font-size: 1rem !important; /* Adjust icon size */
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  border-radius: 50% !important; 
+  padding: 0 !important; 
+  font-size: 1rem !important; 
 }
 
 .plyr__controls .plyr__controls__item:first-child {
     margin-left: 0;
     margin-right: 0;
-    border-radius: 50% !important; /* Circular button */
+    border-radius: 50% !important; 
 }
 
-/* Scrolling Song Info */
 .song-info-container {
-  width: 12.5rem; /* Adjust size */
+  width: 12.5rem; 
   overflow: hidden;
   white-space: nowrap;
   position: relative;
@@ -90,7 +86,6 @@
   }
 }
 
-/* Volume Control Styling */
 .volume-control {
   -webkit-appearance: none;
   appearance: none;
@@ -100,7 +95,7 @@
   background: black;
   outline: none;
   cursor: pointer;
-  margin: 0; /* Ensures no extra margins */
+  margin: 0;
 }
 
 .volume-control::-webkit-slider-thumb {
