@@ -1,7 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
-import Plyr from "plyr-react";
-import "plyr-react/plyr.css";
-import CONFIG from "../config";
+import React from "react";
 import "./Navbar.css"
 import Audio from "../Audio/Audio";
 
