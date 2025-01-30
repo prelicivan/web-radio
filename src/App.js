@@ -1,10 +1,10 @@
 import './App.css';
-import AudioPlayer from './AudioPlayer/AudioPlayer';
+import Home from './Home/Home';
 
 function App() {
   return (
     <div className="App">
-      <AudioPlayer />
+      <Home />
     </div>
   );
 }
