@@ -3,48 +3,60 @@
     justify-content: space-between;
     align-items: center;
     height: 3vh;
-    gap: 1.2rem;
+    gap: 1rem;
     background-color: black;
     padding: 1.2rem;
     border-radius: 0.2rem;
 }
 
+.radio-logo {
+    color: white;
+    display: flex;
+    padding-right: 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid;
+    border-color: white;
+}
+
 .station-status {
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 25px;
 }
 
-.plyr {
-    min-width: 0;
+.audio-player {
+    background-color: black;
 }
 
-.plyr--audio .plyr__controls--overlaid {
-    display: none !important; 
-}
+.play-button {
+    background-color: black; /* Green background */
+    border: none;
+    border-radius: 50%; /* Circular button */
+    width: 50px; /* Button size */
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+  }
 
-.plyr--audio .plyr__controls {
-    justify-content: center !important;
-}
-
-.plyr--audio .plyr__controls {
-    width: 2.5rem !important;
-    height: 2.5rem !important;
-    border-radius: 50% !important; 
-    padding: 0 !important; 
-    font-size: 1rem !important; 
-}
-
-.plyr__controls .plyr__controls__item:first-child {
-    margin-left: 0;
-    margin-right: 0;
-    border-radius: 50% !important; 
-}
+  .play-button:hover {
+    background-color: transparent; /* Darker green on hover */
+  }
+  
+  .play-button svg {
+    width: 35px; 
+    height: 35px;
+    color: white;
+  }
 
 .song-info-container {
-    width: 12.5rem; 
+    width: 20rem; 
     overflow: hidden;
     white-space: nowrap;
-    position: relative;
     border-left: 1px solid black;
     border-top: 1px solid black;
     border-right: 1px solid black;
@@ -52,28 +64,16 @@
     text-align: center;
     background-color: white;
     color: black;
-    height: 2rem;
-    border-radius: 0.5rem;
+    height: 2.5rem;
+    border-radius: 0.3rem;
 }
-
-/* .scrolling-text {
-    display: inline-block;
-    padding-left: 100%;
-    animation: scroll-text 10s linear infinite;
-}
-
-@keyframes scroll-text {
-    from {
-        transform: translateX(100%);
-    }
-    to {
-        transform: translateX(-100%);
-    }
-} */
-
 
 .scrolling-text {
     white-space: nowrap;
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    font-weight: 500;
     overflow: hidden;
     box-sizing: border-box;
     animation: scroll-text 10s linear infinite;
