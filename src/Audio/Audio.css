@@ -62,8 +62,8 @@
     border-right: 1px solid black;
     border-bottom: 1px solid black;
     text-align: center;
-    background-color: white;
-    color: black;
+    background-color: black;
+    color: white;
     height: 2.5rem;
     border-radius: 0.3rem;
 }
@@ -78,6 +78,27 @@
     box-sizing: border-box;
     animation: scroll-text 10s linear infinite;
   }
+
+  .song-info-container-alt {
+    width: 11rem;
+    gap: 0.2rem;
+    background-color: black;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .current-track {
+    font-weight: 550;
+  }
+
+  .current-artist {
+    font-size: 12px;
+  }
+
   
 @keyframes scroll-text {
     0% { transform: translateX(100%); }
@@ -98,6 +119,10 @@
     .song-info-container {
         width: 40vw;
     }
+
+    .song-info-container-alt {
+        width: 6rem;
+    }
 }
 
 @media (max-width: 400px) {
@@ -115,7 +140,11 @@
         width: 9rem;
     }
 
+    .song-info-container-alt {
+        width: 6rem;
+    }
+
     .scrolling-text {
-        animation: scroll-text 15s linear infinite;
+        animation: scroll-text 13s linear infinite;
       }
 }

@@ -10,6 +10,9 @@ function Audio() {
   const [isPlaying, setIsPlaying] = useState(false);
   const soundRef = useRef(null);
 
+  const [currentTrack, setCurrentTrack] = useState("Loading...");
+  const [currentArtist, setcurrentArtist] = useState("Loading...");
+
   useEffect(() => {
     soundRef.current = new Howl({
       src: [CONFIG.API_RADIO_STREAM_URL],
@@ -67,6 +70,12 @@ function Audio() {
           setCurrentSong(
           `${data[0]?.now_playing.song.title} - ${data[0]?.now_playing.song.artist}`
           );
+
+          setCurrentTrack(data[0]?.now_playing.song.title);
+          setcurrentArtist(data[0]?.now_playing.song.artist);
+
+          console.log("Song track: " + currentTrack);
+          console.log("Song artist: " + currentArtist);
       } catch (error) {
           console.error("Error fetching song:", error);
       }
@@ -88,12 +97,16 @@ function Audio() {
           {isPlaying ? <FaPause /> : <FaPlay />}
         </button>
       </div>
-      <div className="song-info-container">
+      {/* <div className="song-info-container">
           <div className="scrolling-text">{currentSong}</div>
+      </div> */}
+      <div className="song-info-container-alt">
+        <div className="current-track">{currentTrack}</div>
+        <div className="current-artist">{currentArtist}</div>
       </div>
-      <div className="station-status" style={{color: stationStatus === "On Air" ? "green" : "red"}}>
+      {/* <div className="station-status" style={{color: stationStatus === "On Air" ? "green" : "red"}}>
           <FaCircle />
-      </div>
+      </div> */}
     </div>
   )
 }
