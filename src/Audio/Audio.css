@@ -96,6 +96,22 @@
     }
 
     .song-info-container {
-        width: 48vw;
+        width: 40vw;
+    }
+}
+
+@media (max-width: 600px) {
+    .station-status {
+        height: 0;
+        width: 0;
+    }
+
+    .station-status svg{
+        height: 0;
+        width: 0;
+    }
+
+    .song-info-container {
+        width: 7.5rem;
     }
 }
