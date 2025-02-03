@@ -100,7 +100,7 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 400px) {
     .station-status {
         height: 0;
         width: 0;
@@ -112,6 +112,10 @@
     }
 
     .song-info-container {
-        width: 7.5rem;
+        width: 9rem;
     }
+
+    .scrolling-text {
+        animation: scroll-text 15s linear infinite;
+      }
 }
