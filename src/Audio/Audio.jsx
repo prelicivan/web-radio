@@ -89,8 +89,8 @@ function Audio() {
   return (
     <div className="audio-component">
       <div className="radio-logo">
-        <div className="radio" style={{fontSize: 15, fontWeight: 50}}>Radio</div>
-        <div className="dzungla" style={{fontSize: 20, fontWeight: 1000}}>Džungla</div>       
+        <div className="radio">Radio</div>
+        <div className="dzungla">Džungla</div>       
       </div>
       <div className="audio-player">
         <button onClick={togglePlay} className="play-button">

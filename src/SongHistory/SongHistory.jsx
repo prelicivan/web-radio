@@ -62,10 +62,8 @@ function SongHistory({
                                 <ul className="song-list" >
                                     {songHistory.map((entry) => (
                                         <li key={entry.sh_id}>  
-                                            <div className="song-item">
                                                 <strong>{entry.song.title}</strong> - {entry.song.artist}
                                             {/* {new Date(entry.played_at*1000).toLocaleTimeString()} */}
-                                            </div>
                                         </li>
                                     ))}
                                 </ul>
