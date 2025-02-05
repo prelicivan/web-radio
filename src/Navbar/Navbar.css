@@ -1,11 +1,33 @@
 .navbar-component {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   height: 8vh;
   background-color: black;
   padding: 1rem;
-  border-radius: 0.1rem;
-  border-bottom: 2px;
 }
 
+.nav-items {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  font-weight: 450;
+  padding: 0.5rem;
+}
+
+.nav-item button {
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  background-color: black;
+  border: none;
+  font-weight: 450;
+  font-size: 1rem;
+  padding: 0;
+}
+
+.nav-item button:hover {
+  cursor: pointer;
+}
