@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import CONFIG from "../config";
 import { Howl } from "howler";
-import { FaPlay, FaPause, FaCircle } from "react-icons/fa";
+import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute } from "react-icons/fa"; // Added volume icons
 import './Audio.css'
-import { Link } from "react-router-dom";
 
 function Audio() {
   const [stationStatus, setStationStatus] = useState("Checking...");
   const [currentSong, setCurrentSong] = useState("Loading...");
   const [isPlaying, setIsPlaying] = useState(false);
   const soundRef = useRef(null);
+  const [isMuted, setIsMuted] = useState(false); // New mute state
+
 
   const [currentTrack, setCurrentTrack] = useState("Loading...");
   const [currentArtist, setcurrentArtist] = useState("Loading...");
@@ -42,6 +43,14 @@ function Audio() {
       soundRef.current.pause();
     } else {
       soundRef.current.play();
+    }
+  };
+
+  const toggleMute = () => {
+    if (soundRef.current) {
+      const newVolume = isMuted ? 1 : 0;
+      soundRef.current.volume(newVolume);
+      setIsMuted(!isMuted);
     }
   };
 
@@ -90,20 +99,23 @@ function Audio() {
   return (
     <div className="audio-component">
       <div className="radio-logo">
-        <Link to="/">
-          <div className="radio">Radio</div>
-          <div className="dzungla">Džungla</div>       
-        </Link>
+        <div className="radio" style={{fontSize: 15, fontWeight: 50}}>Radio</div>
+        <div className="dzungla" style={{fontSize: 20, fontWeight: 1000}}>Džungla</div>       
       </div>
       <div className="audio-player">
         <button onClick={togglePlay} className="play-button">
           {isPlaying ? <FaPause /> : <FaPlay />}
         </button>
+        <button onClick={toggleMute} className="mute-button">
+          {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
+        </button>
       </div>
+
       <div className="song-info-container">
         <div className="current-track">{currentTrack}</div>
         <div className="current-artist">{currentArtist}</div>
       </div>
+      
     </div>
   )
 }
