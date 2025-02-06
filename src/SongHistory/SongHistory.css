@@ -5,7 +5,7 @@
     clip-path: inset(0% round 10px);
     height: 85vh;
     width: 30vw;
-    margin: 0.5rem 0.5rem 0.5rem 1rem;
+    margin: 0.5rem 0.5rem 0.5rem 0.5rem;
 }
 
 .song-list {
