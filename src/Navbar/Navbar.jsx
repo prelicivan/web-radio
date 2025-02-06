@@ -18,9 +18,9 @@ function Navbar({
           <div className="nav-item">
             <Link to="/schedule">Schedule</Link>
           </div>
-          <div className="nav-item">
+          {/* <div className="nav-item">
             <Link to="/gallery">Gallery</Link>
-          </div>
+          </div> */}
           <div className="nav-item">
             <Link to="/contact">Contact</Link>
           </div>
