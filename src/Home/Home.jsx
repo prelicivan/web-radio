@@ -1,25 +1,24 @@
 import React, { useState } from "react";
+import { Routes, Route, Outlet } from "react-router-dom";
 import './Home.css'
 import Navbar from "../Navbar/Navbar";
 import SongHistory from "../SongHistory/SongHistory";
-import { motion } from "framer-motion";
+import Schedule from "../Schedule/Schedule";
+import Gallery from "../Gallery/Gallery";
+import Contact from "../Contact/Contact";
+import { useSongHistory } from "../context/SongHistoryContext";
 
 function Home() {
-    const [songHistory, setSongHistory] = useState(false);
-
-    const toggleSongHistory = () => {
-        if (songHistory) {
-            setSongHistory(false);
-        } else {
-            setSongHistory(true);
-        }
-    }
+    const { songHistory, toggleSongHistory } = useSongHistory();
 
     return (
-        <div className="home">
-            <Navbar toggleSongHistory={toggleSongHistory} />
-            <SongHistory isVisible={songHistory} />
-        </div>
+            <div className="home">
+                <Navbar toggleSongHistory={toggleSongHistory} />
+                <div className="main-content">
+                    <SongHistory isVisible={songHistory} />
+                    <Outlet context={{ songHistory }}/>
+                </div>
+            </div>
     )
 }
 

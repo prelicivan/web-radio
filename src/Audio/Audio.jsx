@@ -3,6 +3,7 @@ import CONFIG from "../config";
 import { Howl } from "howler";
 import { FaPlay, FaPause, FaCircle } from "react-icons/fa";
 import './Audio.css'
+import { Link } from "react-router-dom";
 
 function Audio() {
   const [stationStatus, setStationStatus] = useState("Checking...");
@@ -89,8 +90,10 @@ function Audio() {
   return (
     <div className="audio-component">
       <div className="radio-logo">
-        <div className="radio">Radio</div>
-        <div className="dzungla">Džungla</div>       
+        <Link to="/">
+          <div className="radio">Radio</div>
+          <div className="dzungla">Džungla</div>       
+        </Link>
       </div>
       <div className="audio-player">
         <button onClick={togglePlay} className="play-button">

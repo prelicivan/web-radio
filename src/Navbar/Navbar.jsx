@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.css"
 import Audio from "../Audio/Audio";
 
@@ -15,13 +16,13 @@ function Navbar({
             </button>
           </div>
           <div className="nav-item">
-            Schedule
+            <Link to="/schedule">Schedule</Link>
           </div>
           <div className="nav-item">
-            Gallery
+            <Link to="/gallery">Gallery</Link>
           </div>
           <div className="nav-item">
-            Contact
+            <Link to="/contact">Contact</Link>
           </div>
         </div>
     </div>

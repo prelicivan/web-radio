@@ -54,7 +54,6 @@ function SongHistory({
                 <motion.div className="song-history-component" 
                             initial={{ x: -300 }} 
                             animate={{ x: 0, opacity: 1 }}
-                            exit={{ x: -300, opacity: 0 }}
                             transition={{ type: "spring", stiffness: 100, damping: 15 }} >
                         {isLoading ? (
                             <p>Loading...</p>

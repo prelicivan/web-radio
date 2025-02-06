@@ -30,6 +30,11 @@
     font-weight: 1000;
 }
 
+.radio-logo a {
+  text-decoration: none;
+  color: white;
+}
+
 .station-status svg{
     width: 2rem;
     height: 2rem;
