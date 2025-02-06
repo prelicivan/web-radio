@@ -1,0 +1,75 @@
+.contact-component {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 4rem;
+    height: 85vh;
+    width: 99vw; 
+    clip-path: inset(0% round 10px);
+    margin: 0.5rem;
+    background-color: black;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    transform-origin: right; 
+    transition: transform 0.5s ease; 
+}  
+
+.contact-component.song-history-active {
+    transform: scaleX(0.99); /* Scale down to 99% width */
+}
+
+.left-side-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    border-right: 1px solid white;
+    padding: 2rem 2rem 2rem 2rem;
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.big-logo h1 {
+    font-size: 3rem;
+    margin-top: 0;
+}
+
+.big-logo h3 {
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 0;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.email {
+    margin-bottom: 1rem;
+}
+
+.address {
+    margin-bottom: 1rem;
+}
+
+.social-media {
+    margin-bottom: 1rem;
+}
+
+.social-media a {
+    margin-right: 0.5rem;
+}
+
+.about-us {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 2rem 2rem 1rem;
+    justify-content: center;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 500;
+}
+
