@@ -4,11 +4,20 @@ import "./Navbar.css"
 import Audio from "../Audio/Audio";
 
 function Navbar({
-  toggleSongHistory
+  toggleSongHistory,
+  turnOffSongHistory
 }) {
   return (
     <div className="navbar-component">
-        <Audio />
+      <div className="navbar-left-container">
+          <div className="radio-logo">
+              <Link to="/" onClick={turnOffSongHistory}>
+                <div className="radio">Radio</div>
+                <div className="dzungla">Džungla</div>       
+              </Link>
+            </div>
+          <Audio />
+        </div>
         <div className="nav-items">
           <div className="nav-item">
             <button onClick={toggleSongHistory}>
@@ -18,9 +27,9 @@ function Navbar({
           <div className="nav-item">
             <Link to="/schedule">Schedule</Link>
           </div>
-          {/* <div className="nav-item">
+          <div className="nav-item">
             <Link to="/gallery">Gallery</Link>
-          </div> */}
+          </div>
           <div className="nav-item">
             <Link to="/contact">Contact</Link>
           </div>

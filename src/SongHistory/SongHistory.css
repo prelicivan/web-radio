@@ -1,11 +1,13 @@
-.song-history-component {   
+.song-history-component { 
+    display: flex;  
+    align-items: center;
     background-color: black;
     color: white;
     font-family: 'Montserrat', sans-serif;
     clip-path: inset(0% round 10px);
     height: 85vh;
-    width: 30vw;
-    margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+    width: 22vw;
+    margin: 0.5rem 0.5rem 0.5rem 0.7rem;
 }
 
 .song-list {
@@ -16,6 +18,7 @@
     margin-inline-end: 1rem;
     padding-inline-start: 0rem;
     unicode-bidi: isolate;
+    overflow: hidden;
 }
 
 .song-list li:nth-of-type(1n+14) {
@@ -23,14 +26,55 @@
 } 
 
 .song-list li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding-bottom: 0.5rem;
-    padding-top: 0.5rem;
+    padding-top: 0.7rem;
     border-bottom: 1px solid white;
-    font-size: clamp(0.8rem,  0.1rem + 1vw, 2rem);
+    font-size: 0.9rem;
+    height: 13vh;
+    width: 20vw;
 }
 
 .song-list li:last-of-type {
     border-bottom: none;
+}
+
+.label-name {
+    font-size: 0.7rem;
+    font-style: italic;
+}
+
+.year-released {
+    font-size: 0.7rem;
+    font-style: italic;
+}
+
+.artist-name {
+    margin-bottom: 0.5rem;
+}
+
+@media (min-width: 1500px) {
+    .song-list li {
+        font-size: 1.17rem;
+    }
+
+    .track-name {
+        font-size: 1.4rem;
+    }
+
+    .artist-name {
+        font-size: 1.4rem;
+    }
+
+    .label-name {
+        font-size: 0.9rem;
+    }
+    
+    .year-released {
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 500px) {

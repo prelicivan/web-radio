@@ -1,119 +1,105 @@
 .audio-component {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 3vh;
-    gap: 1rem;
-    background-color: black;
-    padding: 1.2rem;
-    border-radius: 0.2rem;
-    color: white;
-}
-
-.radio-logo {
-    display: flex;
-    padding-right: 1.5rem;
-    font-family: 'Montserrat', sans-serif;
-    flex-direction: column;
-    justify-content: center;
-    border-right: 1px solid;
-    border-color: white;
-}
-
-.radio-logo .radio {
-    font-size: clamp(1rem, 0.9rem + 0.1vw, 2rem);
-    font-weight: 50;
-}
-
-.radio-logo .dzungla {
-    font-size: clamp(1.3125rem, 1.1rem + 0.1vw, 2rem);
-    font-weight: 1000;
-}
-
-.radio-logo a {
-  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 3vh;
+  gap: 1rem;
+  background-color: black;
+  padding: 1.2rem;
+  border-radius: 0.2rem;
   color: white;
 }
 
-.station-status svg{
-    width: 2rem;
-    height: 2rem;
-}
-
 .audio-player {
-    display: flex;
-    gap: 0.5rem;
-    background-color: black;
+  display: flex;
+  gap: 0.5rem;
+  background-color: black;
 }
 
 .play-button {
-    background-color: black; 
-    border: none;
-    border-radius: 50%; 
-    width: 3rem; 
-    height: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  }
+  background-color: black; 
+  border: none;
+  border-radius: 50%; 
+  width: 3rem; 
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
 
-  .play-button:hover {
-    background-color: transparent; 
-  }
-  
-  .play-button svg {
-    width: 3rem; 
-    height: 3rem;
-    color: white;
-  }
+.play-button:hover {
+  background-color: transparent; 
+}
 
-  .mute-button {
-    background-color: black; 
-    border: none;
-    border-radius: 50%; 
-    width: 3rem; 
-    height: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  }
+.play-button svg {
+  width: 3rem; 
+  height: 3rem;
+  color: white;
+}
 
-  .mute-button svg {
-    width: 2rem; 
-    height: 2rem;
-    color: white;
-  }
+.mute-button {
+  background-color: black; 
+  border: none;
+  border-radius: 50%; 
+  width: 3rem; 
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
 
-  .song-info-container {
-    width: 13rem;
-    gap: 0.1rem;
-    background-color: black;
-    font-family: 'Montserrat', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-  }
+.mute-button svg {
+  width: 2rem; 
+  height: 2rem;
+  color: white;
+}
 
+.song-info-container {
+  width: 13rem;
+  gap: 0.1rem;
+  background-color: black;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.current-show {
+  font-size: 0.7rem;
+  border-bottom: 1px solid white;
+  justify-self: center;
+}
+
+.current-track {
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+.current-artist {
+  font-size: 0.8rem;
+}
+
+@media (min-width: 1500px) {
   .current-track {
-    font-weight: 650;
-    font-size: clamp(1rem, 0.9rem + 0.1vw, 2rem);
+    font-size: 1.3rem;
   }
 
   .current-artist {
-    font-size: clamp(0.8rem, 0.7rem + 0.1vw, 2rem);
+    font-size: 1.04rem;
   }
+}
 
 @media (max-width: 600px) {
-    .song-info-container {
-        width: 40vw;
-    }
+  .song-info-container {
+      width: 40vw;
+  }
 }
 
 @media (max-width: 400px) {
-    .song-info-container {
-        width: 9rem;
-    }
+  .song-info-container {
+      width: 9rem;
+  }
 }

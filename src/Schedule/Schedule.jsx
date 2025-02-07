@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import './Schedule.css'
 import CONFIG from "../config";
 import { useOutletContext } from "react-router-dom";
+import { lineWobble } from 'ldrs'
 
 const getNextSevenDays = () => {
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -30,6 +31,8 @@ function Schedule() {
     const [isLoading, setIsLoading] = useState(true);
 
     const { songHistory } = useOutletContext();
+
+    lineWobble.register()
 
     // Select initial day
     useEffect(() => {
@@ -81,7 +84,7 @@ function Schedule() {
             </div>
             <div className="schedule-list">
                 {isLoading ? (
-                    <p>Loading schedule...</p>
+                    <p className="schedule-no-load">Loading schedule...</p>
                 ) : schedule.length > 0 ? (
                     schedule.map((show, index) => (
                         <div key={index} className="schedule-item">
@@ -94,7 +97,7 @@ function Schedule() {
                         </div>
                     ))
                 ) : (
-                    <p>No scheduled shows for this day.</p>
+                    <p className="schedule-no-load">No scheduled shows for this day</p>
                 )}
             </div>
         </div>

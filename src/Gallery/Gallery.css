@@ -13,6 +13,7 @@
   }
   
   .gallery-component.song-history-active {
+    width: 75vw;
     transform: scaleX(0.99); /* Scale down to 99% width */
   }
   

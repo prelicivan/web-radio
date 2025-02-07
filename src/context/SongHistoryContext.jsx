@@ -9,8 +9,12 @@ export const SongHistoryProvider = ({ children }) => {
         setSongHistory((prev) => !prev);
     };
 
+    const turnOffSongHistory = () => {
+        setSongHistory(false);
+    }
+
     return (
-        <SongHistoryContext.Provider value={{ songHistory, toggleSongHistory }}>
+        <SongHistoryContext.Provider value={{ songHistory, toggleSongHistory, turnOffSongHistory }}>
             {children}
         </SongHistoryContext.Provider>
     );

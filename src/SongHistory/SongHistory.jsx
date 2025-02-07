@@ -38,7 +38,7 @@ function SongHistory({
     useEffect(() => {
         const loadSongHistory = async () => {
             const history = await fetchSongHistory();
-            setSongHistory(history.slice(1, 14));
+            setSongHistory(history.slice(1, 6));
             setIsLoading(false);
         };
 
@@ -54,15 +54,18 @@ function SongHistory({
                 <motion.div className="song-history-component" 
                             initial={{ x: -300 }} 
                             animate={{ x: 0, opacity: 1 }}
-                            transition={{ type: "spring", stiffness: 100, damping: 15 }} >
+                            transition={{ type: "spring", stiffness: 100, damping: 16 }} >
                         {isLoading ? (
                             <p>Loading...</p>
                             ) : (
                                 <ul className="song-list" >
                                     {songHistory.map((entry) => (
-                                        <li key={entry.sh_id}>  
-                                                <strong>{entry.song.title}</strong> - {entry.song.artist}
-                                            {/* {new Date(entry.played_at*1000).toLocaleTimeString()} */}
+                                        <li key={entry.sh_id}>
+                                            <div className="track-name"><strong>{entry.song.title}</strong> </div>
+                                            <div className="artist-name">{entry.song.artist}</div>  
+                                            <div className="label-name">Album: ...</div> 
+                                            <div className="year-released">Year of release: ...</div>
+                                            {/* Label and Year would be extracted from album and  - now_playing */}
                                         </li>
                                     ))}
                                 </ul>

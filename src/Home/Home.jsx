@@ -9,11 +9,11 @@ import Contact from "../Contact/Contact";
 import { useSongHistory } from "../context/SongHistoryContext";
 
 function Home() {
-    const { songHistory, toggleSongHistory } = useSongHistory();
+    const { songHistory, toggleSongHistory, turnOffSongHistory } = useSongHistory();
 
     return (
             <div className="home">
-                <Navbar toggleSongHistory={toggleSongHistory} />
+                <Navbar toggleSongHistory={toggleSongHistory} turnOffSongHistory={turnOffSongHistory} />
                 <div className="main-content">
                     <SongHistory isVisible={songHistory} />
                     <Outlet context={{ songHistory }}/>

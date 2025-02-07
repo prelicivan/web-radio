@@ -10,11 +10,12 @@
     color: white;
     font-family: 'Montserrat', sans-serif;
     transform-origin: right; 
-    transition: transform 0.5s ease; 
+    transition: transform 0.4s ease; 
 }  
 
 .schedule-component.song-history-active {
-    transform: scaleX(0.99); 
+    transform: scaleX(0.99);
+    width: 75vw;
   }
 
   .day-selector {
@@ -25,7 +26,6 @@
     margin: 1.2rem;
     font-size: 1.2rem;
     font-weight: 400;
-    transition: gap 0.5s ease; 
   }
   
   .day-selector.song-history-active {
@@ -60,6 +60,7 @@
     border-bottom: 1px solid white;
     margin: 0rem 1rem 0rem 1rem;
     padding-top: 1rem;
+    overflow: hidden;
 }
 
 .schedule-item {
@@ -70,9 +71,14 @@
     margin: 0.3rem 2rem 0rem 2rem;
     max-height: 1.3rem;
     border-bottom: 1px solid transparent; 
+    transition: gap 0.5s ease; 
 }
 
 .schedule-item:hover {
     border-color: white;
 }
 
+.schedule-no-load {
+    display: flex;
+    justify-content: center;
+}

@@ -15,7 +15,8 @@
 }  
 
 .contact-component.song-history-active {
-    transform: scaleX(0.99); /* Scale down to 99% width */
+    transform: scaleX(0.99);
+    width: 75vw;
 }
 
 .left-side-container {
